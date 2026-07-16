@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.github.goldcoin10"
-version = "1.0"
+version = "1.2"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("commons-codec:commons-codec:1.16.1")
     implementation("commons-io:commons-io:2.6")
-
 }
 
 tasks.test {

@@ -1,5 +1,6 @@
 package com.github.goldcoin10;
 
+import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -7,28 +8,56 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Menu {
-    private static JMenu fileMenu() {
+    public static JMenu fileMenu() {
         JMenu fileMenu = new JMenu("File");
+        fileMenu.add(openItem());
+        fileMenu.add(licenceMenuItem());
+        return fileMenu;
+    }
+
+    public static JMenuItem openItem() {
         JMenuItem openItem = new JMenuItem("Open");
-        fileMenu.add(openItem);
         openItem.addActionListener(e -> {
             JFileChooser chooseFile = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                    "Audio Files", "wav", "aac", "mp3");
-            chooseFile.setFileFilter(filter);
+            chooseFile.setFileFilter(Main.filter);
             int returnVal = chooseFile.showOpenDialog(null);
             if(returnVal == JFileChooser.APPROVE_OPTION) {
                 if(Audio.mediaPlayer != null) {
                     Audio.disposeData();
                 }
-                Main.filepath = chooseFile.getSelectedFile();
-                Audio.filePath = Main.filepath.toURI().toString();
-                Audio.media = new Media(Audio.filePath);
-                Audio.mediaPlayer = new MediaPlayer(Audio.media);
+                Platform.runLater(() -> {
+                    Main.filepath = chooseFile.getSelectedFile();
+                    Audio.filePath = Main.filepath.toURI().toString();
+                    Audio.media = new Media(Audio.filePath);
+                    Audio.mediaPlayer = new MediaPlayer(Audio.media);
+                });
             }
 
         });
-        return fileMenu;
+        return openItem;
+    }
+
+    public static JMenuItem licenceMenuItem() {
+        JMenuItem licenceMenu = new JMenuItem("Licence");
+        licenceMenu.addActionListener(e -> {
+            JOptionPane.showMessageDialog(licenceMenu, """
+                    MIT Licence
+                    
+                    Copyright 2026 goldcoin10
+                    
+                    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”),
+                    to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+                    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+                    
+                    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+                    
+                    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+                    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                    """);
+        });
+        return licenceMenu;
     }
 
     public static JMenuBar renderMenuBar() {

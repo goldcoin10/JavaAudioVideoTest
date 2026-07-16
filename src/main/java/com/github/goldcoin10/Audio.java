@@ -5,24 +5,31 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+import javax.swing.*;
+
 public class Audio {
-    static boolean jfxinit = false;
     static MediaPlayer mediaPlayer;
     static String filePath;
     static Media media;
 
     public static void playAudio(){
         Platform.runLater(() -> {
+            Main.frame.setTitle("MediaPlayer (" + Main.filepath.getName() + ")");
+            Frame.nowPlaying = Main.filepath.getName();
             mediaPlayer.play();
         });
     }
-    public void printFilePath(){
+    public static void printFilePath(){
         System.out.println(filePath);
     }
 
     public static void pauseAudio() {
         Platform.runLater(() -> {
-            if (mediaPlayer != null) mediaPlayer.pause();
+            if (mediaPlayer != null) {
+                mediaPlayer.pause();
+                Main.frame.setTitle("MediaPlayer");
+                Frame.nowPlaying = "nothing playing";
+            }
         });
     }
 
@@ -47,10 +54,14 @@ public class Audio {
     }
 
     public static void jumpFive() {
-        mediaPlayer.seek(Duration.seconds(currentTime() + 5));
+        if(mediaPlayer != null) {
+            mediaPlayer.seek(Duration.seconds(currentTime() + 5));
+        }
     }
 
     public static void backFive() {
-        mediaPlayer.seek(Duration.seconds(currentTime() - 5));
+        if(mediaPlayer != null) {
+            mediaPlayer.seek(Duration.seconds(currentTime() - 5));
+        }
     }
 }
