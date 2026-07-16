@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.github.goldcoin10"
-version = "1.2"
+version = "1.2.1"
 
 repositories {
     mavenCentral()
@@ -31,4 +31,10 @@ javafx {
 
 application {
     mainClass.set("com.github.goldcoin10.Main")
+}
+
+tasks.jar {
+    manifest {
+        attributes["Implementation-Version"] = project.version
+    }
 }

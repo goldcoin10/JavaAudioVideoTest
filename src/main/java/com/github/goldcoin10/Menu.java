@@ -5,18 +5,19 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.WindowEvent;
 
 public class Menu {
     public static JMenu fileMenu() {
         JMenu fileMenu = new JMenu("File");
         fileMenu.add(openItem());
-        fileMenu.add(licenceMenuItem());
+        fileMenu.add(versionDialog());
+        fileMenu.add(quit());
         return fileMenu;
     }
 
     public static JMenuItem openItem() {
-        JMenuItem openItem = new JMenuItem("Open");
+        JMenuItem openItem = new JMenuItem("Open Audio");
         openItem.addActionListener(e -> {
             JFileChooser chooseFile = new JFileChooser();
             chooseFile.setFileFilter(Main.filter);
@@ -37,10 +38,10 @@ public class Menu {
         return openItem;
     }
 
-    public static JMenuItem licenceMenuItem() {
-        JMenuItem licenceMenu = new JMenuItem("Licence");
-        licenceMenu.addActionListener(e -> {
-            JOptionPane.showMessageDialog(licenceMenu, """
+    public static JMenuItem versionDialog() {
+        JMenuItem versionDialog = new JMenuItem("Version");
+        versionDialog.addActionListener(e -> {
+            JOptionPane.showMessageDialog(versionDialog, "Version: " + Main.currentVersion() + "\n\n" + """
                     MIT Licence
                     
                     Copyright 2026 goldcoin10
@@ -57,7 +58,13 @@ public class Menu {
                     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     """);
         });
-        return licenceMenu;
+        return versionDialog;
+    }
+
+    public static JMenuItem quit() {
+        JMenuItem quit = new JMenuItem("Exit");
+        quit.addActionListener(e -> {Main.frame.dispatchEvent(new WindowEvent(Main.frame, WindowEvent.WINDOW_CLOSING));});
+        return quit;
     }
 
     public static JMenuBar renderMenuBar() {

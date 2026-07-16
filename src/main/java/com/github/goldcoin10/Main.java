@@ -24,6 +24,13 @@ class Main implements Runnable {
     public static boolean audioPlaying = false;
     static JFrame frame = new JFrame("MediaPlayer");
     static final FileNameExtensionFilter filter = new FileNameExtensionFilter("Audio Files", "wav", "aac", "mp3");
+    static final String currentVersion() {
+        if(Main.class.getPackage().getImplementationVersion() == null) {
+            return "DEVEL";
+        } else {
+            return Main.class.getPackage().getImplementationVersion();
+        }
+    }
 
     public void run() {
         renderGUI();
