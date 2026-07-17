@@ -1,17 +1,15 @@
-package com.github.goldcoin10;
+package com.github.goldcoin10.JavaMediaPlayer.goldcoin10;
 
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.util.Objects;
 
-import static com.github.goldcoin10.Main.*;
-import static com.github.goldcoin10.filePaths.pauseIcon;
-import static com.github.goldcoin10.filePaths.playIcon;
+import static com.github.goldcoin10.JavaMediaPlayer.goldcoin10.Main.*;
+import static com.github.goldcoin10.JavaMediaPlayer.goldcoin10.filePaths.pauseIcon;
+import static com.github.goldcoin10.JavaMediaPlayer.goldcoin10.filePaths.playIcon;
 
 public class Frame {
     public static String nowPlaying;

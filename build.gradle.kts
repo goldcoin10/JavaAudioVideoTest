@@ -4,7 +4,7 @@ plugins {
     id("com.gradleup.shadow") version "8.3.0"
 }
 
-group = "com.github.goldcoin10"
+group = "com.github.goldcoin10.JavaMediaPlayer.goldcoin10"
 version = "1.2.1"
 
 repositories {
@@ -30,7 +30,7 @@ javafx {
 }
 
 application {
-    mainClass.set("com.github.goldcoin10.Main")
+    mainClass.set("com.github.goldcoin10.JavaMediaPlayer.goldcoin10.Main")
 }
 
 tasks.jar {

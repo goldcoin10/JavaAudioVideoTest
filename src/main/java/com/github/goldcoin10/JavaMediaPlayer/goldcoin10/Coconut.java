@@ -1,4 +1,4 @@
-package com.github.goldcoin10;
+package com.github.goldcoin10.JavaMediaPlayer.goldcoin10;
 
 import java.io.IOException;
 import java.util.Objects;

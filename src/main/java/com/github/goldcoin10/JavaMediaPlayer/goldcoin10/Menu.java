@@ -1,4 +1,4 @@
-package com.github.goldcoin10;
+package com.github.goldcoin10.JavaMediaPlayer.goldcoin10;
 
 import javafx.application.Platform;
 import javafx.scene.media.Media;

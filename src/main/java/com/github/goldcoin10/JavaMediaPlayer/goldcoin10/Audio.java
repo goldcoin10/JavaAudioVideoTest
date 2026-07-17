@@ -1,11 +1,9 @@
-package com.github.goldcoin10;
+package com.github.goldcoin10.JavaMediaPlayer.goldcoin10;
 
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-
-import javax.swing.*;
 
 public class Audio {
     static MediaPlayer mediaPlayer;
